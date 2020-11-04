@@ -8,3 +8,4 @@ Les 6 méthodes à implanter:
 
 général:
     -> utiliser l'anglais ou le français (dans le projet on ne doit utiliser qu'une langue)
+    -> changer le type des cibles pour la méthode du perceptron
