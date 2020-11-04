@@ -1,47 +1,30 @@
 """ Main projet_IFT712"""
+from classes.reg_log import RegLog
 from classes.parser import Parser
-from classes.csvdataframe import CSVDataFrame
-import reg_log
+
 
 def main():
-    print("============= Main start ===============\n")
+    print("\u001B[32m", "============= Main start ===============\n", "\u001B[0m")
 
-    data = Parser("data/leaf_train.csv")
+    """ using Parser to load the datafile into parser.data"""
+    parser = Parser("data/leaf_train.csv")
+    # parser.parsing_1()
+    # print("> 5 first parameters:", parser.parameters[:5])
+    # print("> 15th data: ", parser.data[14])
 
-    print("> les 5 premiers paramètres sont:", data.parameters[:5])
-    print("> la 15ième donnée est ", data.data[14])
-
-
-    print("\n============= Main end ===============")
-    
-    
-    """ Dataframe ordonné par l'id """
-    df = CSVDataFrame("data/leaf_train.csv").data.sort_values(by=['id'])
-    
-    name_train_attributes = df.columns[2:]
-    name_target_attribute = df.columns[1]
-    df_train = df.iloc[:,2:].values
-    df_target = df.iloc[:,1].values
-    
-    """modification de df_target avec les noms de classes fusionnées (on ne garde que le préfixe)"""
-    df_target_fusion = df_target
-    
-    for i in range(len(df_target_fusion)):
-        s = df_target_fusion[i].split('_')
-        df_target_fusion[i] = s[0]
-        
-    #print(df_target_fusion)
-        
-    
-    #print(name_train_attributes)
-    #print(name_target_attribute)
-    #print(df_target)
-    #print(df_train)
+    print("\u001B[35m", "\t\t --- reg_log method --- ", "\u001B[0m")
+    reg_log = RegLog()
+    df_train, df_target = parser.data_sorted_id()
+    df_target_fusion = parser.get_target_fusion(df_target)
     
     """pour lancer la régression logistique avec les targets non fusionnées"""
-    #reg_log.reg_log(df_train,df_target)
+    reg_log.reg_log(df_train, df_target)
     """pour lancer la régression logistique avec les targets fusionnées """
-    #reg_log.reg_log(df_train,df_target_fusion)
+    reg_log.reg_log(df_train, df_target_fusion)
+
+    print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
+
+    print("\u001B[32m", "\n============= Main end ===============", "\u001B[0m")
 
 
 if __name__ == "__main__":
