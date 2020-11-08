@@ -4,6 +4,7 @@ from classes.reg_log import RegLog
 from classes.parser import Parser
 from classes.perceptron import Percep
 import numpy as np
+from classes.KNN import KNNeighbours
 
 
 def main():
@@ -26,6 +27,12 @@ def main():
     # pour lancer la régression logistique avec les targets fusionnées
     print("merge target:")
     reg_log.reg_log(xf_train, xf_test, yf_train, yf_test)
+    knn = KNNeighbours()
+    """KNN method with non-merged targets"""
+    #knn.Knn(df_train, df_target)
+    """KNN method with merged targets"""
+    knn.Knn(df_train, df_target_fusion)
+
     print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
 
     print("\u001B[35m", "\n\t\t --- perceptron method --- ", "\u001B[0m")
