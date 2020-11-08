@@ -1,6 +1,7 @@
 """ Main projet_IFT712"""
 from classes.reg_log import RegLog
 from classes.parser import Parser
+from classes.KNN import KNNeighbours
 
 
 def main():
@@ -21,6 +22,12 @@ def main():
     reg_log.reg_log(df_train, df_target)
     """pour lancer la régression logistique avec les targets fusionnées """
     reg_log.reg_log(df_train, df_target_fusion)
+
+    knn = KNNeighbours()
+    """KNN method with non-merged targets"""
+    #knn.Knn(df_train, df_target)
+    """KNN method with merged targets"""
+    knn.Knn(df_train, df_target_fusion)
 
     print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
 
