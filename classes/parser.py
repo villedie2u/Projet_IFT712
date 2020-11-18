@@ -68,3 +68,28 @@ class Parser:
         print(len(x), len(t))
         return x, t
 
+    @staticmethod
+    def modif_target(t, classes=[]):
+        """change un vecteur de classe en vecteur d'indices de classe"""
+        new_t = []
+        make_classe = classes == []
+        for k in t:
+            if make_classe and k not in classes:
+                classes.append(k)
+            new_t.append(classes.index(k))
+        n = len(classes)  # todo compter le nombre de classes
+        return n, classes, new_t
+
+    @staticmethod
+    def modif_entry(x):
+        max0 = x[0]
+        n = len(x[0])
+        new_x = x.copy()
+        for element in x:
+            for i in range(n):
+                max0[i] = max(max0[i], element[i])
+
+        for i in range(len(x)):
+            for j in range(n):
+                new_x[i, j] /= max0[j]
+        return new_x
