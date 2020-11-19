@@ -2,6 +2,7 @@
 from classes.reg_log import RegLog
 from classes.parser import Parser
 from classes.KNN import KNNeighbours
+from classes.SVM import SupportVectorMachine
 
 
 def main():
@@ -28,6 +29,12 @@ def main():
     #knn.Knn(df_train, df_target)
     """KNN method with merged targets"""
     knn.Knn(df_train, df_target_fusion)
+
+    svm = SupportVectorMachine()
+    """SVM method with non-merged targets"""
+    #svm.Svm(df_train, df_target)
+    """SVM method with merged targets"""
+    svm.Svm(df_train, df_target_fusion)
 
     print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
 
