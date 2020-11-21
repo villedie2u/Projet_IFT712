@@ -7,10 +7,8 @@ class RN:
         self.model = None
 
     def training(self, x_train, t_train, n):
-        print(len(x_train))
-        print("nb de classes", n)
         t_train = tf.one_hot(t_train, n)
-        # réseau de neurones, ici 2 couches 100 puis n neurones (car n classes)
+        # réseau de neurones, ici 3 couches 100 puis n neurones (car n classes)
         model = tf.keras.Sequential([
             tf.keras.layers.Dense(100, activation="relu"),
             tf.keras.layers.Dense(100, activation="relu"),

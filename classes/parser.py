@@ -73,11 +73,21 @@ class Parser:
         """change un vecteur de classe en vecteur d'indices de classe"""
         new_t = []
         make_classe = classes == []
+        nb_never_seen_class = 0
         for k in t:
-            if make_classe and k not in classes:
-                classes.append(k)
-            new_t.append(classes.index(k))
-        n = len(classes)  # todo compter le nombre de classes
+            if make_classe:
+                if k not in classes:
+                    classes.append(k)
+                new_t.append(classes.index(k))
+            if not make_classe:
+                if k not in classes:
+                    new_t.append(-1)
+                    nb_never_seen_class += 1
+                else:
+                    new_t.append(classes.index(k))
+        if nb_never_seen_class != 0:
+            print("\twarning ", nb_never_seen_class, "items can't be predicted")
+        n = len(classes)
         return n, classes, new_t
 
     @staticmethod
