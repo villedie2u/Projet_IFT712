@@ -36,7 +36,7 @@ class Parser:
         return df_train, df_target
 
     @staticmethod
-    def get_train_test(df_train,df_target):
+    def get_train_test(df_train, df_target):
         x_train, x_test, y_train, y_test = train_test_split(df_train, df_target, test_size=0.2, random_state=42)
         return x_train, x_test, y_train, y_test
 
@@ -72,21 +72,21 @@ class Parser:
     def modif_target(t, classes=[]):
         """change un vecteur de classe en vecteur d'indices de classe"""
         new_t = []
-        make_classe = classes == []
+        make_classe = len(classes) == 0
         nb_never_seen_class = 0
         for k in t:
             if make_classe:
                 if k not in classes:
                     classes.append(k)
                 new_t.append(classes.index(k))
-            if not make_classe:
+            else:
                 if k not in classes:
                     new_t.append(-1)
                     nb_never_seen_class += 1
                 else:
                     new_t.append(classes.index(k))
-        if nb_never_seen_class != 0:
-            print("\twarning ", nb_never_seen_class, "items can't be predicted")
+        if not make_classe and nb_never_seen_class != 0:
+            print("\t\u001B[31mwarning ", nb_never_seen_class, "items can't be predicted\u001B[0m")
         n = len(classes)
         return n, classes, new_t
 

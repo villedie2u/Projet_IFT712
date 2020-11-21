@@ -11,7 +11,9 @@ class RN:
         # réseau de neurones, ici 3 couches 100 puis n neurones (car n classes)
         model = tf.keras.Sequential([
             tf.keras.layers.Dense(100, activation="relu"),
+            tf.keras.layers.Dropout(rate=0.1),
             tf.keras.layers.Dense(100, activation="relu"),
+            tf.keras.layers.Dropout(rate=0.1),
             tf.keras.layers.Dense(100, activation="relu"),
             tf.keras.layers.Dense(n, activation="sigmoid")
         ])
@@ -23,7 +25,7 @@ class RN:
         )
 
         # entraînement
-        model.fit(x_train, t_train, epochs=200, verbose=1)  # epochs pour le nombre d'entraînements et verbose pour l'affichage
+        model.fit(x_train, t_train, epochs=200, verbose=0)  # epochs pour le nombre d'entraînements et verbose pour l'affichage
         self.model = model
 
     def error_predict(self, x_test, t_test, n):

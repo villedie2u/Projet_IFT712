@@ -17,4 +17,4 @@ class DecisionTree:
         for i in range(n):
             if self.predict(x_test[i]) == t_test[i]:
                 ratio += 1
-        print("\tNombre de prédictions correctes:", ratio, "/", n, "=", ratio/n, "%")
+        print("\tNombre de prédictions correctes:", ratio, "/", n, "=", ratio/n*100, "%")
