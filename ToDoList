@@ -8,4 +8,5 @@ Les 6 méthodes à implanter:
 
 général:
     -> utiliser l'anglais ou le français (dans le projet on ne doit utiliser qu'une langue)
-    -> finir la méthode du perceptron /PA
+    -> finir la méthode Naive Bayes /PA
+    -> homogénéniser le code
