@@ -15,26 +15,26 @@ def main():
     # print("> 15th data: ", parser.data[14])
 
     print("\u001B[35m", "\t\t --- reg_log method --- ", "\u001B[0m")
-    reg_log = RegLog()
     df_train, df_target = parser.data_sorted_id()
     df_target_fusion = parser.get_target_fusion(df_target)
     
-    """pour lancer la régression logistique avec les targets non fusionnées"""
+    reg_log = RegLog()
+    """logistic regression with non-merged targets"""
     reg_log.reg_log(df_train, df_target)
-    """pour lancer la régression logistique avec les targets fusionnées """
-    reg_log.reg_log(df_train, df_target_fusion)
-
+    """logistic regression with merged targets"""
+    #reg_log.reg_log(df_train, df_target_fusion)
+    
     knn = KNNeighbours()
     """KNN method with non-merged targets"""
     #knn.Knn(df_train, df_target)
     """KNN method with merged targets"""
-    knn.Knn(df_train, df_target_fusion)
-
+    #knn.Knn(df_train, df_target_fusion)
+    
     svm = SupportVectorMachine()
     """SVM method with non-merged targets"""
     #svm.Svm(df_train, df_target)
     """SVM method with merged targets"""
-    svm.Svm(df_train, df_target_fusion)
+    #svm.Svm(df_train, df_target_fusion)
 
     print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
 
