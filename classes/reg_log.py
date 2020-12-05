@@ -30,8 +30,8 @@ class RegLog:
         if (paramC == 0):
             print("Training model...")
             start = time.time()
-            #x_train, x_test, y_train, y_test = train_test_split(data_train, data_target, test_size=0.2, random_state=42)
-            x_train, x_test, y_train, y_test = StratifiedShuffleSplit(data_train, data_target, test_size=0.2, random_state=42)
+            x_train, x_test, y_train, y_test = train_test_split(data_train, data_target, test_size=0.2, random_state=42)
+            #x_train, x_test, y_train, y_test = StratifiedShuffleSplit(data_train, data_target, test_size=0.2, random_state=42)
             
             model = LogisticRegression()
             model.fit(x_train, y_train)
@@ -92,6 +92,6 @@ class RegLog:
             self.print_results()
 
     def print_results(self):
-        # print("predictions:", self.predictions, "\n")
-        # print("classification_report:", self.classification_report, "\n")
-        print("\taccuracy_score:", self.accuracy_score, "\n")
+        print("predictions:", self.predictions, "\n")
+        print("classification_report:", self.classification_report, "\n")
+        print("accuracy_score:", self.accuracy_score, "\n")
