@@ -32,9 +32,9 @@ def main():
 
     
     reg_log = RegLog()
-    """logistic regression with non-merged targets"""
+    #logistic regression with non-merged targets
     reg_log.reg_log(df_train, df_target)
-    """logistic regression with merged targets"""
+    #logistic regression with merged targets"""
     #reg_log.reg_log(df_train, df_target_fusion)
     
     knn = KNNeighbours()
