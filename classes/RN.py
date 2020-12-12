@@ -5,19 +5,46 @@ import numpy as np
 class RN:
     def __init__(self):
         self.model = None
+        self.model0 = None
 
-    def training(self, x_train, t_train, n):
+    @staticmethod
+    def set_model(nb_couche, nb_neurone_par_couche, n):
+        if nb_couche == 3:
+            return tf.keras.Sequential([
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dense(n, activation="sigmoid")
+            ])
+        elif nb_couche == 2:
+            return tf.keras.Sequential([
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dense(n, activation="sigmoid")
+            ])
+        elif nb_couche == 5:
+            return tf.keras.Sequential([
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dropout(rate=0.1),
+                tf.keras.layers.Dense(nb_neurone_par_couche, activation="relu"),
+                tf.keras.layers.Dense(n, activation="sigmoid")
+            ])
+
+    def training(self, x_train, t_train, n, nb_couche=3, nb_neurone_par_couche=100):
         t_train = tf.one_hot(t_train, n)
-        # réseau de neurones, ici 3 couches 100 puis n neurones (car n classes)
-        model = tf.keras.Sequential([
-            tf.keras.layers.Dense(100, activation="relu"),
-            tf.keras.layers.Dropout(rate=0.1),
-            tf.keras.layers.Dense(100, activation="relu"),
-            tf.keras.layers.Dropout(rate=0.1),
-            tf.keras.layers.Dense(100, activation="relu"),
-            tf.keras.layers.Dense(n, activation="sigmoid")
-        ])
-
+        # réseau de neurones
+        model = self.set_model(nb_couche, nb_neurone_par_couche, n)
         model.compile(
             optimizer=tf.keras.optimizers.Adam(),
             loss=tf.keras.losses.MeanSquaredError(),

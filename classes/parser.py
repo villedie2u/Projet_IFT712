@@ -92,6 +92,7 @@ class Parser:
 
     @staticmethod
     def modif_entry(x):
+        # division de chaque valeur par le maximum des données (maximum très faible) pour étaler les données jusque 1.
         max0 = x[0]
         n = len(x[0])
         new_x = x.copy()

@@ -58,14 +58,19 @@ def main():
     print("\u001B[35m", "\t\t --- end reg_log method --- ", "\u001B[0m")
 
     print("\u001B[35m", "\n\t\t --- RN method --- ", "\u001B[0m")
-
+    """
     rn = RN()
     x_train1 = parser.modif_entry(x_train0)
     x_test1 = parser.modif_entry(x_test0)
 
-    rn.training(x_train1, t_train0, n)
-    rn.error_predict(x_test1, t_test0, n)
-
+    nb_couches = [2, 3, 5]
+    nb_neurones = [25, 50, 100]
+    for nb_couche in nb_couches:
+        for nb_neurone in nb_neurones:
+            print(nb_couche, "couches de ", nb_neurone, "neurones")
+            rn.training(x_train1, t_train0, n, nb_couche=nb_couche, nb_neurone_par_couche=nb_neurone)
+            rn.error_predict(x_test1, t_test0, n)
+    """
     print("\u001B[35m", "\t\t --- end RN method --- ", "\u001B[0m")
 
     print("\u001B[35m", "\t\t --- Decision Tree method --- ", "\u001B[0m")
@@ -83,7 +88,7 @@ def main():
     print("\u001B[35m", "\t\t --- end Decision Tree method --- ", "\u001B[0m")
 
     print("\u001B[35m", "\t\t --- Naive Bayes method --- ", "\u001B[0m")
-    """
+
     nb = Naive_Bayes()
 
     print("Résultats sans fusion des classes proches")
@@ -93,7 +98,7 @@ def main():
     print("Résultats avec fusion des classes proches")
     nb.training(x_train0, t_train0)
     nb.test_model(x_test0, t_test0)
-    """
+
     print("\u001B[35m", "\t\t --- end Naive Bayes method --- ", "\u001B[0m")
 
     print("\u001B[32m", "\n============= Main end ===============", "\u001B[0m")
