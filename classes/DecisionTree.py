@@ -1,3 +1,5 @@
+"""trying to predict targets using a decision tree model"""
+
 from sklearn import tree
 
 
@@ -17,4 +19,4 @@ class DecisionTree:
         for i in range(n):
             if self.predict(x_test[i]) == t_test[i]:
                 ratio += 1
-        print("\tNombre de prédictions correctes:", ratio, "/", n, "=", ratio/n*100, "%")
+        print("\tNumber of true predictions:", ratio, "/", n, "=", ratio/n*100, "%")

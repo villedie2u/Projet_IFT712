@@ -15,6 +15,7 @@ def main():
         print("Usage: python main.py decision_tree KNN Naive_Bayes SVM reg_log neural_network"
               "\n\t for each arg, input 1 if you want to show the methode, 0 instead")
         return None
+        # todo ajouter 0/1 pour merge data ou non
 
     else:
         d_t = int(sys.argv[1])
@@ -91,7 +92,7 @@ def main():
             for layer in layers:
                 for neurons in nb_neurons:
                     print(layer, "layers of ", neurons, "neurons")
-                    rn.training(x_train1, t_train0, n, nb_couche=layer, nb_neurone_par_couche=neurons)
+                    rn.training(x_train1, t_train0, n, nb_layers=layer, nb_neurons=neurons)
                     rn.error_predict(x_test1, t_test0, n)
 
             print("Results with merge of closest targets")
@@ -103,7 +104,7 @@ def main():
             for layer in layers:
                 for neurons in nb_neurons:
                     print(layer, "layers of ", neurons, "neurons")
-                    rn.training(x_train1, t_train0, n, nb_couche=layer, nb_neurone_par_couche=neurons)
+                    rn.training(x_train1, t_train0, n, nb_layers=layer, nb_neurons=neurons)
                     rn.error_predict(x_test1, t_test0, n)
 
             print("\u001B[35m", "\t\t --- end RN method --- \n", "\u001B[0m")

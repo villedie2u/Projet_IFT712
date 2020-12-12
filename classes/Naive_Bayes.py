@@ -1,3 +1,5 @@
+"""trying to predict targets using the naive bayes method"""
+
 from sklearn.naive_bayes import GaussianNB
 
 
@@ -6,9 +8,11 @@ class Naive_Bayes:
         self.model = GaussianNB()
 
     def training(self, x_train, t_train):
+        # to train the model
         self.model = self.model.fit(x_train, t_train)
 
     def test_model(self, x_test, t_test):
+        # testing the model on test data
         predictions = self.model.predict(x_test)
         nb_good_pred = 0
         n = len(t_test)
@@ -18,4 +22,4 @@ class Naive_Bayes:
                     nb_good_pred += 1
             else:
                 n -= 1
-        print("\tNombre de prédictions correctes:", nb_good_pred, "/", n, "=", nb_good_pred / n *100, "%")
+        print("\tNumber of true predictions:", nb_good_pred, "/", n, "=", nb_good_pred / n *100, "%")
