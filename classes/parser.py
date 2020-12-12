@@ -28,7 +28,8 @@ class Parser:
               "parameters \t(in Parser.parameters)"
               "\u001B[0m")
 
-    def data_sorted_id(self, filename):
+    @staticmethod
+    def data_sorted_id(filename):
         """ parsing data into training and testing samples"""
         df = CSVDataFrame(filename).data.sort_values(by=['id'])
         df_train = df.iloc[:, 2:].values
@@ -42,7 +43,7 @@ class Parser:
 
     @staticmethod
     def get_target_fusion(df_target):
-        """modification de df_target avec les noms de classes fusionnées (on ne garde que le préfixe)"""
+        """modification of df_target, merge classes in the same specie"""
         df_target_fusion = df_target.copy()
         for i in range(len(df_target_fusion)):
             s = df_target_fusion[i].split('_')
@@ -70,7 +71,7 @@ class Parser:
 
     @staticmethod
     def modif_target(t, classes=[]):
-        """change un vecteur de classe en vecteur d'indices de classe"""
+        """change class names into integers"""
         new_t = []
         make_classe = len(classes) == 0
         nb_never_seen_class = 0
@@ -92,7 +93,7 @@ class Parser:
 
     @staticmethod
     def modif_entry(x):
-        # division de chaque valeur par le maximum des données (maximum très faible) pour étaler les données jusque 1.
+        # divide each value by the maximum (values << 1) so the range of value is approximately [0, 1]
         max0 = x[0]
         n = len(x[0])
         new_x = x.copy()

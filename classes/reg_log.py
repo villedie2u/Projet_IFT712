@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 30 11:30:58 2020
-
+class using the Logistic Regression method to predict targets
 @author: maxim
 """
 import pandas as pd
