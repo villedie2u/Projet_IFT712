@@ -31,7 +31,7 @@ class KNNeighbours:
             
             K_choice = int(input("Please, choose a parameter K : "))
             
-             # Training and evaluating the model's accuracy with the K parameter you chose
+            # Training and evaluating the model's accuracy with the K parameter you chose
             x_train,x_test,y_train,y_test=train_test_split(data_train,data_target,test_size=0.2)
             neigh=KNeighborsClassifier(n_neighbors=K_choice)
             neigh.fit(x_train,y_train)
@@ -61,7 +61,6 @@ class KNNeighbours:
                 knn = KNeighborsClassifier(n_neighbors=k)
                 scores = cross_val_score(knn, data_train, data_target, cv=10, scoring='accuracy')
                 scores_list.append(scores.mean())
-                #print("Pour k =",k," on a erreur moyenne = ",1-scores.mean())
                 
             # turning this into a misclassification errors list
             Errors = []

@@ -72,16 +72,11 @@ class SupportVectorMachine:
             
             
             nb_Cs = int(input("Number of C : "))
-            #nb_Gammas = int(input("Number of Gammas : "))
             Cs = np.logspace(start = 0.001, stop = 3, num = nb_Cs)
-            #gammas = np.logspace(start = 0.001, stop = 3, num = nb_Gammas)
-            #print("CS : ",Cs," GAMMA : ",gammas)
             print("CS : ",Cs)
             
-            #param_grid = {'C': Cs, 'gamma' : gammas}
             param_grid = {'C': Cs}
             
-            #print("C and Gamma parameters tuning. Please, wait. It could take a few minutes.")
             print("C parameter tuning. Please, wait. It could take a few minutes.")
             start = time.time()
             
@@ -94,10 +89,8 @@ class SupportVectorMachine:
             
             print("Time taken : ",format_timespan(time_spent)," seconds")
             
-            #print("BEST PARAMS: ",best," TYPE : ",type(best))
             print("BEST PARAMS: ",best)
             
-            #print(float(best['C'])," TYPE : ",type(float(best['Gamma'])))
             print(float(best['C']))
             
             print("Training model with the best parameters found and a ",opt," kernel")
