@@ -31,7 +31,6 @@ class RegLog:
             print("Training model...")
             start = time.time()
             x_train, x_test, y_train, y_test = train_test_split(data_train, data_target, test_size=0.2, random_state=42)
-            #x_train, x_test, y_train, y_test = StratifiedShuffleSplit(data_train, data_target, test_size=0.2, random_state=42)
             
             model = LogisticRegression()
             model.fit(x_train, y_train)
@@ -71,16 +70,12 @@ class RegLog:
             
             print("Time taken : ",format_timespan(time_spent)," seconds")
             
-            #print("BEST PARAMS: ",best," TYPE : ",type(best))
             print("BEST PARAMS: ",best)
             
-            #print(float(best['C'])," TYPE : ",type(float(best['Gamma'])))
             print(float(best['C']))
             
             print("Training model with the best parameters found...")
             x_train, x_test, y_train, y_test = train_test_split(data_train, data_target, test_size=0.2, random_state=42)
-            #Shuffle = StratifiedShuffleSplit(n_splits=10, test_size=0.2, random_state=42)
-            
             
             model = LogisticRegression(C=float(best['C']))
             model.fit(x_train, y_train)
