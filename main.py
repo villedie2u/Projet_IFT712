@@ -93,30 +93,48 @@ def main():
     if int(input("Show Decision Tree method [yes = 1/ no = 0]: ")):
         print("\u001B[35m", "\t\t --- Decision Tree method --- ", "\u001B[0m")
         dt = DecisionTree()
-
-        if int(input("Merge targets? [yes = 1/ no = 0]: ")):
-            print("Results with merge of closest targets")
-            dt.training(x_train0, t_train0)
-            dt.test_model(x_test0, t_test0)
+        if int(input("Using AdaBoost? [yes = 1/ no = 0]: ")):
+            if int(input("Merge targets? [yes = 1/ no = 0]: ")):
+                print("Results with merge of closest targets and Adaboost")
+                n_model = 50
+                dt.test_ada_boost_model(x_train0, t_train0, n_model, x_test0, t_test0)
+            else:
+                print("Results without merge of closest targets and Adaboost")
+                n_model = 50
+                dt.test_ada_boost_model(x_train, t_train, n_model, x_test, t_test)
         else:
-            print("Results without merge of closest targets")
-            dt.training(x_train, t_train)
-            dt.test_model(x_test, t_test)
+            if int(input("Merge targets? [yes = 1/ no = 0]: ")):
+                print("Results with merge of closest targets")
+                dt.training(x_train0, t_train0)
+                dt.test_model(x_test0, t_test0)
+            else:
+                print("Results without merge of closest targets")
+                dt.training(x_train, t_train)
+                dt.test_model(x_test, t_test)
 
         print("\u001B[35m", "\t\t --- end Decision Tree method --- \n", "\u001B[0m")
 
     if int(input("Show Naive Bayes method [yes = 1/ no = 0]: ")):
         print("\u001B[35m", "\t\t --- Naive Bayes method --- ", "\u001B[0m")
         nb = Naive_Bayes()
-
-        if int(input("Merge targets? [yes = 1/ no = 0]: ")):
-            print("Results with merge of closest targets")
-            nb.training(x_train0, t_train0)
-            nb.test_model(x_test0, t_test0)
+        if int(input("Using AdaBoost? [yes = 1/ no = 0]: ")):
+            if int(input("Merge targets? [yes = 1/ no = 0]: ")):
+                print("Results with merge of closest targets")
+                n_model = 50
+                nb.test_ada_boost_model(x_train0, t_train0, n_model, x_test0, t_test0)
+            else:
+                print("Results without merge of closest targets")
+                n_model = 50
+                nb.test_ada_boost_model(x_train, t_train, n_model, x_test, t_test)
         else:
-            print("Results without merge of closest targets")
-            nb.training(x_train, t_train)
-            nb.test_model(x_test, t_test)
+            if int(input("Merge targets? [yes = 1/ no = 0]: ")):
+                print("Results with merge of closest targets")
+                nb.training(x_train0, t_train0)
+                nb.test_model(x_test0, t_test0)
+            else:
+                print("Results without merge of closest targets")
+                nb.training(x_train, t_train)
+                nb.test_model(x_test, t_test)
 
         print("\u001B[35m", "\t\t --- end Naive Bayes method --- \n", "\u001B[0m")
 
